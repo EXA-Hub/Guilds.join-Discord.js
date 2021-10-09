@@ -1,0 +1,25 @@
+{
+    "name": "guilds.join-discord-bot",
+    "version": "1.0.0",
+    "description": "A discord bot that uses EXA & Professor Api for adding members to guilds.",
+    "main": "index.js",
+    "scripts": {
+        "test": "node test.js",
+        "restart": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "keywords": [
+        "guilds.join"
+    ],
+    "author": "zampx",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.22.0",
+        "discord.js": "^12.5.3",
+        "dotenv": "^8.6.0",
+        "express": "^4.17.1",
+        "quick.db": "^7.1.3",
+        "request": "^2.88.2",
+        "url": "^0.11.0"
+    }
+}
