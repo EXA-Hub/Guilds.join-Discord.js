@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13"
+  }
+}

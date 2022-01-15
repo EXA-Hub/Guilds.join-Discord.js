@@ -1,0 +1,6 @@
+{
+  "name": "Bot",
+  "language": "typescript",
+  "manager": "yarn",
+  "prefix": "?"
+}
