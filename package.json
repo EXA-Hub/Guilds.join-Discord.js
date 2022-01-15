@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "discord.js": "^13.6.0",
     "slappey": "^4.0.0"
   }
 }

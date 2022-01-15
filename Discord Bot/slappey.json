@@ -1,0 +1,7 @@
+{
+  "name": "Discord Bot",
+  "language": "typescript",
+  "manager": "yarn",
+  "token": "ODkzODgzMTc3NjIwMzczNTg0.YVh7lQ.12ptjkVQv5IzKFF1hz6vSK_JkAo",
+  "prefix": "!"
+}
