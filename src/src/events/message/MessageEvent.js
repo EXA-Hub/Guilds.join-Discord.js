@@ -1,13 +1,11 @@
-import BaseEvent from '../../utils/structures/BaseEvent';
-import { Message } from 'discord.js';
-import DiscordClient from '../../client/client';
+const BaseEvent = require("../../utils/structures/BaseEvent");
 
-export default class MessageEvent extends BaseEvent {
+module.exports = class MessageEvent extends BaseEvent {
   constructor() {
-    super('message');
+    super("messageCreate");
   }
 
-  async run(client: DiscordClient, message: Message) {
+  async run(client, message) {
     if (message.author.bot) return;
     if (message.content.startsWith(client.prefix)) {
       const [cmdName, ...cmdArgs] = message.content
@@ -20,4 +18,4 @@ export default class MessageEvent extends BaseEvent {
       }
     }
   }
-}
+};

@@ -1,9 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-mongoose.connect("");
-
-const User = new mongoose.Schema({
-  guilds: { type: Array, required: true },
+const UserSchema = new mongoose.Schema({
   userId: { type: String, required: true, unique: true },
   discordTag: { type: String, required: true },
   email: { type: String, required: true },
@@ -11,4 +8,6 @@ const User = new mongoose.Schema({
   refreshToken: { type: String, required: true },
 });
 
-module.exports = mongoose.model("users", User);
+const User = mongoose.model("users", UserSchema);
+
+module.exports = User;
