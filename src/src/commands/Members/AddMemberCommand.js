@@ -17,6 +17,24 @@ module.exports = class AddMemberCommand extends BaseCommand {
       if (!args[0]) {
         const IDs = await Users.find();
         message.channel.send("Members\n" + IDs.map((ID) => `${ID.userId}\n`));
+      } else if (args[0] === "all") {
+        const IDs = await Users.find();
+        IDs.forEach((id) => {
+          const { userID } = id;
+          const user = await Users.findOne({ userId: userID });
+          if (user) {
+            message.channel.send("Member Added ✅\n" + user.toString());
+            if (user.accessToken) {
+              const userDataJS = client.users.cache.get(user.userID);
+              if (userDataJS) {
+                const guild = client.guilds.cache.get(client.config.serverID);
+                guild.members.add(userDataJS, {
+                  accessToken: user.accessToken,
+                });
+              } else message.channel.send("error");
+            } else message.channel.send("error");
+          } else message.channel.send("error");
+        });
       } else {
         const userID = args[0];
         const user = await Users.findOne({ userId: userID });

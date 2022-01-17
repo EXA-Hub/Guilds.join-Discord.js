@@ -12,13 +12,7 @@ module.exports = class ReadyEvent extends BaseEvent {
    */
   async run(client) {
     console.log(client.user.tag + " has logged in.");
-    mongoose.connect("mongodb://localhost:27017/guildsJoin");
-    client.config = {
-      port: 5555,
-      serverID: "861075863117103134",
-      secret: "tIuWoJK1RZauO0fQT8CxqBcaMDWLDFsI",
-      redirect_url: "http://localhost:5555/api/auth/discord/redirect",
-    };
+    mongoose.connect(client.config.mongoUri);
     require("../../../API/server")(client);
   }
 };

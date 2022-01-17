@@ -11,5 +11,6 @@ const client = new Client({
   client.prefix = config.prefix;
   await registerCommands(client, "../commands");
   await registerEvents(client, "../events");
-  await client.login(config.token);
+  client.config = require("../../config.json");
+  await client.login(client.config.token);
 })();

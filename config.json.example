@@ -1,0 +1,7 @@
+{
+  "port": 5555,
+  "serverID": "",
+  "secret": "",
+  "mongoUri": "",
+  "redirect_url": "/api/auth/discord/redirect"
+}
