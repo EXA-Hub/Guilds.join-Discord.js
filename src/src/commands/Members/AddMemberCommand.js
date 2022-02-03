@@ -12,42 +12,42 @@ module.exports = class AddMemberCommand extends BaseCommand {
    * @param {Array<String>} args
    */
   run(client, message, args) {
+    const DiscordOauth2 = require("discord-oauth2");
     const Users = require("../../../data/mongo");
+    const oauth = new DiscordOauth2();
     (async () => {
       if (!args[0]) {
         const IDs = await Users.find();
         message.channel.send("Members\n" + IDs.map((ID) => `${ID.userId}\n`));
       } else if (args[0] === "all") {
-        const IDs = await Users.find();
-        IDs.forEach((id) => {
-          const { userID } = id;
-          const user = await Users.findOne({ userId: userID });
+        const users = await Users.find();
+        users.forEach(async (user) => {
           if (user) {
             message.channel.send("Member Added ✅\n" + user.toString());
             if (user.accessToken) {
-              const userDataJS = client.users.cache.get(user.userID);
-              if (userDataJS) {
-                const guild = client.guilds.cache.get(client.config.serverID);
-                guild.members.add(userDataJS, {
-                  accessToken: user.accessToken,
-                });
-              } else message.channel.send("error");
-            } else message.channel.send("error");
-          } else message.channel.send("error");
+              oauth.addMember({
+                accessToken: user.accessToken,
+                guildId: message.guildId,
+                botToken: client.token,
+                userId: user.userId,
+              });
+            } else message.channel.send("error1");
+          } else message.channel.send("error2");
         });
       } else {
-        const userID = args[0];
-        const user = await Users.findOne({ userId: userID });
-        if (user) {
-          message.channel.send("Member Added ✅\n" + user.toString());
-          if (user.accessToken) {
-            const userDataJS = client.users.cache.get(user.userID);
-            if (userDataJS) {
-              const guild = client.guilds.cache.get(client.config.serverID);
-              guild.members.add(userDataJS, { accessToken: user.accessToken });
-            } else message.channel.send("error");
-          } else message.channel.send("error");
-        } else message.channel.send("error");
+        Users.findOne({ userID: args[0] }, (err, user) => {
+          if (user && !err) {
+            message.channel.send("Member Added ✅\n" + user.toString());
+            if (user.accessToken) {
+              oauth.addMember({
+                accessToken: user.accessToken,
+                guildId: message.guildId,
+                botToken: client.token,
+                userId: user.userId,
+              });
+            } else message.channel.send("error1");
+          } else message.channel.send("error2");
+        });
       }
     })();
   }

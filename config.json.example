@@ -3,5 +3,6 @@
   "serverID": "",
   "secret": "",
   "mongoUri": "",
-  "redirect_url": "/api/auth/discord/redirect"
+  "redirect_url": "/api/auth/discord/redirect",
+  "token": ""
 }

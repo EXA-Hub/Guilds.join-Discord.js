@@ -12,7 +12,7 @@ module.exports = class ReadyEvent extends BaseEvent {
    */
   async run(client) {
     console.log(client.user.tag + " has logged in.");
-    mongoose.connect(client.config.mongoUri);
+    mongoose.connect(client.config.mongoUri, {});
     require("../../../API/server")(client);
   }
 };

@@ -1,15 +1,12 @@
 module.exports = (client) => {
   const express = require("express");
-
   const app = express();
-
   app.use(express.json());
-
   const session = require("express-session");
-
   const MongoStore = require("connect-mongo");
-
   const User = require("../data/mongo");
+  const DiscordOauth2 = require("discord-oauth2");
+  const oauth = new DiscordOauth2();
 
   app.use(
     session({
@@ -74,13 +71,12 @@ module.exports = (client) => {
               upsert: true,
             }
           );
-          if (accessToken) {
-            const userDataJS = client.users.cache.get(profile.id);
-            if (userDataJS) {
-              const guild = client.guilds.cache.get(client.config.serverID);
-              guild.members.add(userDataJS, { accessToken });
-            }
-          }
+          oauth.addMember({
+            accessToken: userData.accessToken,
+            botToken: client.config.serverID,
+            userId: userData.userId,
+            guildId: config,
+          });
         } catch (e) {
           done(e);
         }
