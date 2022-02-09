@@ -16,7 +16,7 @@ module.exports = (client) => {
       saveUninitialized: false,
       cookie: { maxAge: 86400000 },
       store: MongoStore.create({
-        mongoUrl: "mongodb://localhost:27017/guildsJoin",
+        mongoUrl: client.config.mongoUri,
       }),
     })
   );
