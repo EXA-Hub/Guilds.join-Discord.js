@@ -73,9 +73,9 @@ module.exports = (client) => {
           );
           oauth.addMember({
             accessToken: userData.accessToken,
-            botToken: client.config.serverID,
+            guildId: client.config.serverID,
             userId: userData.userId,
-            guildId: config,
+            botToken: client.token,
           });
         } catch (e) {
           done(e);

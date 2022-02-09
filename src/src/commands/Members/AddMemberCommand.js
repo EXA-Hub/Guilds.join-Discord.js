@@ -18,12 +18,12 @@ module.exports = class AddMemberCommand extends BaseCommand {
     (async () => {
       if (!args[0]) {
         const IDs = await Users.find();
-        message.channel.send("Members\n" + IDs.map((ID) => `${ID.userId}\n`));
+        message.channel.send("الأعضاء\n" + IDs.map((ID) => `${ID.userId}\n`));
       } else if (args[0] === "all") {
         const users = await Users.find();
         users.forEach(async (user) => {
           if (user) {
-            message.channel.send("Member Added ✅\n" + user.toString());
+            message.channel.send("إضافة العضو ✅\n" + user.toString());
             if (user.accessToken) {
               oauth.addMember({
                 accessToken: user.accessToken,
@@ -31,13 +31,13 @@ module.exports = class AddMemberCommand extends BaseCommand {
                 botToken: client.token,
                 userId: user.userId,
               });
-            } else message.channel.send("error1");
-          } else message.channel.send("error2");
+            } else message.channel.send("خطأ ×");
+          } else message.channel.send("خطأ ××");
         });
       } else {
         Users.findOne({ userID: args[0] }, (err, user) => {
           if (user && !err) {
-            message.channel.send("Member Added ✅\n" + user.toString());
+            message.channel.send("إضافة العضو ✅\n" + user.toString());
             if (user.accessToken) {
               oauth.addMember({
                 accessToken: user.accessToken,
@@ -45,8 +45,8 @@ module.exports = class AddMemberCommand extends BaseCommand {
                 botToken: client.token,
                 userId: user.userId,
               });
-            } else message.channel.send("error1");
-          } else message.channel.send("error2");
+            } else message.channel.send("خطأ ×");
+          } else message.channel.send("خطأ ××");
         });
       }
     })();
