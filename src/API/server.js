@@ -7,6 +7,7 @@ module.exports = (client) => {
   const User = require("../data/mongo");
   const DiscordOauth2 = require("discord-oauth2");
   const oauth = new DiscordOauth2();
+  const ejs = require("ejs");
 
   app.use(
     session({
@@ -25,7 +26,7 @@ module.exports = (client) => {
   });
 
   const { Router } = require("express");
-
+  app.set("view engine", "ejs");
   const router = Router();
 
   const CLIENT_ID = client.user.id,
@@ -94,7 +95,15 @@ module.exports = (client) => {
     passport.authenticate("discord"),
     (req, res) => {
       req.session.user = req.user;
-      res.send(req.user);
+      res.render("html", { userName: req.user.discordTag });
+      // ejs.renderFile(
+      //   "html.html",
+      //   { userName: req.user.discordTag },
+      //   function (err, str) {
+      //     if (err) return res.status(404);
+      //     res.send("str");
+      //   }
+      // );
     }
   );
 

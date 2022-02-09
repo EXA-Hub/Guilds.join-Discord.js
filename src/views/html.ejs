@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تم بنجاح</title>
+    <link
+      rel="icon"
+      href="https://cdn.discordapp.com/attachments/888204358741811240/941035879986786344/62-624281_check-circle-ring-correct-right-mark-character-check-mark-icon-png.png"
+    />
+    <style>
+      .container-fluid.main {
+        position: relative; /* To make the navbar positions relative to this container */
+        padding: 0;
+      }
+
+      .navbar-default {
+        background-image: none;
+        background-color: transparent; /* Make the menu become transparent */
+        border-radius: 0px;
+        border: 0;
+        box-shadow: none;
+        padding: 10px;
+        position: absolute; /* Make the menu out of the document flow so it can placed anywhere without disturbing other widgets */
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10; /* If you delete this line, your menu link won't be clicked because it is behind the background. Applying this code bring the menu in front of the background */
+      }
+
+      .navbar-default .navbar-brand {
+        font-family: Verdana;
+        color: #ffffff;
+        font-size: 20px;
+      }
+
+      .navbar-default .navbar-brand:hover,
+      .navbar-default .navbar-brand:focus {
+        color: #ffffff;
+        background-color: transparent;
+      }
+
+      .navbar-default .navbar-nav > li > a {
+        color: #ffffff;
+      }
+
+      .navbar-default .navbar-nav > li > a:hover,
+      .navbar-default .navbar-nav > li > a:focus {
+        color: #ffffff;
+        background-color: transparent;
+      }
+
+      .navbar-default .navbar-toggle {
+        border-color: transparent;
+      }
+
+      .navbar-default .navbar-toggle:hover {
+        background-color: transparent;
+      }
+
+      .navbar-default .navbar-toggle:focus {
+        background-color: transparent;
+      }
+
+      .navbar-default .navbar-toggle .icon-bar {
+        background-color: #ffffff;
+      }
+
+      .carousel .background {
+        background-position: center center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        height: 700px;
+      }
+
+      @media (max-width: 991px) {
+        .carousel .background {
+          background-size: cover; /* To make the background image looks good */
+        }
+      }
+
+      .carousel .background.a {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://static.pexels.com/photos/92090/pexels-photo-92090-large.jpeg");
+      }
+
+      .carousel .background.b {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://static.pexels.com/photos/93750/pexels-photo-93750-large.jpeg");
+      }
+
+      .carousel .background.c {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://static.pexels.com/photos/76827/bahia-ocean-bay-boat-76827-large.jpeg");
+      }
+
+      .carousel-fade .carousel-inner .item {
+        opacity: 0;
+        transition: opacity 0.5s; /* The 0.5s describes the duration to make the opacity from 0 to 1 */
+      }
+
+      .carousel-fade .carousel-inner .active {
+        opacity: 1;
+      }
+
+      /* CSS Hack to trigger GPU for smooth transition */
+      @media all and (transform-3d), (-webkit-transform-3d) {
+        .carousel-fade .carousel-inner > .item.next,
+        .carousel-fade .carousel-inner > .item.active.right {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+        .carousel-fade .carousel-inner > .item.prev,
+        .carousel-fade .carousel-inner > .item.active.left {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+        .carousel-fade .carousel-inner > .item.next.left,
+        .carousel-fade .carousel-inner > .item.prev.right,
+        .carousel-fade .carousel-inner > .item.active {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      /* CSS Hack to trigger GPU for smooth transition */
+
+      .covertext {
+        position: absolute; /* To make the div to be place anywhere. It is out of the document flow */
+        top: 200px; /* The distance between the div with the top of document */
+        left: 0px; /* Make the div full width */
+        right: 0px; /* Make the div full width */
+      }
+
+      .title {
+        font-family: Verdana;
+        font-weight: 600;
+        font-size: 60px;
+        color: #ffffff;
+        text-align: center;
+      }
+
+      .subtitle {
+        font-family: Verdana;
+        font-size: 23px;
+        color: #ffffff;
+        text-align: center;
+      }
+
+      .explore {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .explore .btn-lg,
+      .explore .btn-lg:hover {
+        border-radius: 30px;
+        padding: 15px 25px;
+        font-size: 22px;
+        background-image: none;
+        background-color: #ff4000;
+        border-color: #ff4000;
+        color: #ffffff;
+      }
+
+      .btn,
+      .btn:hover {
+        border-radius: 0px;
+        background-image: none;
+        background-color: #ff4000;
+        border-color: #ff4000;
+        color: #ffffff;
+        margin-bottom: 20px;
+        box-shadow: none;
+        outline: none;
+      }
+
+      .btn:focus,
+      .btn:active:focus,
+      .btn.active:focus,
+      .btn.focus,
+      .btn:active.focus,
+      .btn.active.focus {
+        color: #ffffff;
+        outline: none;
+      }
+    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+      crossorigin="anonymous"
+    />
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+      integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid main">
+      <div
+        id="myCarousel"
+        class="carousel carousel-fade slide"
+        data-ride="carousel"
+        data-interval="3000"
+      >
+        <div class="carousel-inner" role="listbox">
+          <div class="item active background a"></div>
+          <div class="item background b"></div>
+          <div class="item background c"></div>
+        </div>
+      </div>
+      <div class="covertext">
+        <div class="col-lg-10" style="float: none; margin: 0 auto">
+          <h1 class="title">شكرا لك يا <%= userName %> على تسجيلك معنا</h1>
+          <h2 class="subtitle">
+            <div class="col-xs-12 explore">
+              مشروع البوت:
+              <li style="list-style: none">
+                <a
+                  href="https://github.com/EXA-Hub/Guilds.join-Discord.js"
+                  target="_blank"
+                  ><button type="button" class="btn btn-lg explorebtn">
+                    Guilds.join-Discord.js
+                  </button></a
+                >
+              </li>
+              صاحب مشروع البوت:
+              <li style="list-style: none">
+                <a href="https://github.com/EXA-Hub" target="_blank"
+                  ><button type="button" class="btn btn-lg explorebtn">
+                    EXA-Hub
+                  </button></a
+                >
+              </li>
+              سيرفر صاحب مشروع البوت:
+              <li style="list-style: none">
+                <a href="https://discord.gg/ZPpwb3GRyG" target="_blank"
+                  ><button type="button" class="btn btn-lg explorebtn">
+                    EXA-4-EVER (Discord)
+                  </button></a
+                >
+              </li>
+              قناة صاحب مشروع البوت:
+              <li style="list-style: none">
+                <a href="https://youtube.com/exa4ever" target="_blank"
+                  ><button type="button" class="btn btn-lg explorebtn">
+                    EXA-4-EVER (YT)
+                  </button></a
+                >
+              </li>
+            </div>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <script>
+      /* When your mouse cursor enter the background, the fading won't pause and keep playing */
+      $(".carousel").carousel({
+        pause:
+          "false" /* Change to true to make it paused when your mouse cursor enter the background */,
+      });
+    </script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+      integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
