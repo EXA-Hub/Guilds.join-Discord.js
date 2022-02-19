@@ -1,20 +1,6 @@
 const BaseCommand = require("../../utils/structures/BaseCommand");
 const Discord = require("discord.js");
 
-const example = {
-  _id: { $oid: "62110998316c4adaf254a0db" },
-  userId: "635933198035058700",
-  __v: 0,
-  accessToken: "XXif4HdLbw45x3Jri67WFvhJvCkx04",
-  deaf: false,
-  discordTag: "ZAMPX#0063",
-  email: "vip.mimo2015@gmail.com",
-  mute: false,
-  nick: null,
-  refreshToken: "FHlAk7gedHkrpuALtVnLjpdYkU2pGZ",
-  roles: ["test role", "new role"],
-};
-
 module.exports = class AddMemberCommand extends BaseCommand {
   constructor() {
     super("addMember", "Members", []);
