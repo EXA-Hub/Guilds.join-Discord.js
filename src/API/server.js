@@ -1,3 +1,8 @@
+const { Client } = require("discord.js");
+/**
+ *
+ * @param {Client} client
+ */
 module.exports = (client) => {
   const express = require("express");
   const app = express();
@@ -55,29 +60,41 @@ module.exports = (client) => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          const userData = {
-            userId: profile.id,
-            discordTag: `${profile.username}#${profile.discriminator}`,
-            email: profile.email,
-            accessToken,
-            refreshToken,
-          };
-          done(null, userData);
-          await User.findOneAndUpdate(
-            {
-              userId: userData.userId,
-            },
-            userData,
-            {
-              upsert: true,
-            }
-          );
-          oauth.addMember({
-            accessToken: userData.accessToken,
-            guildId: client.config.serverID,
-            userId: userData.userId,
-            botToken: client.token,
-          });
+          oauth
+            .addMember({
+              guildId: client.config.serverID,
+              botToken: client.token,
+              userId: profile.id,
+              accessToken,
+            })
+            .then(async () => {
+              const guild = client.guilds.cache.get(client.config.serverID);
+              const member = await guild.members.fetch(profile.id);
+              const userData = {
+                userId: profile.id,
+                discordTag: `${profile.username}#${profile.discriminator}`,
+                email: profile.email,
+                accessToken,
+                refreshToken,
+                roles: member.roles.cache
+                  .mapValues((role) => role.name)
+                  .filter((role) => role !== "@everyone")
+                  .toJSON(),
+                nick: member.nickname,
+                mute: member.voice.mute ? true : false,
+                deaf: member.voice.deaf ? true : false,
+              };
+              done(null, userData);
+              await User.findOneAndUpdate(
+                {
+                  userId: userData.userId,
+                },
+                userData,
+                {
+                  upsert: true,
+                }
+              );
+            });
         } catch (e) {
           done(e);
         }
